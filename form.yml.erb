@@ -1,0 +1,55 @@
+---
+cluster: "magnus"
+form:
+  - bc_partition
+  - bc_num_hours
+  - bc_reservation
+  - bc_num_slots
+  - bc_num_memory
+  - bc_num_gpus
+#  - bc_email_on_started
+  - working_dir
+attributes:
+  bc_reservation:
+    label: "Name of reservation (leave empty if none)"
+    widget: "text_field"
+    value: ""
+
+  bc_partition:
+    label: "Partition"
+    widget: "select"
+    value: "magnus"
+    options:
+#      - ["debug","debug"]
+      - ["gpu-rh8","gpu-rh8"]
+      - ["magnus-rh8","magnus-rh8"]
+
+  bc_num_slots:
+    label: "Number of CPUs"
+    widget: "number_field"
+    min: "1"
+
+  bc_num_memory:
+    label: "Amount of RAM"
+    widget: "text_field"
+    help: "Use Slurm format, e.g. 4096M, 10G. If left blank, 4505 MB will be allocated per CPU core requested."
+
+  bc_num_gpus:
+    label: "Number of GPUs"
+#    widget: "number_field"
+    widget: "text_field"
+#    max: "4"
+#    min: "0"
+
+  bc_num_hours:
+    label: "Number of hours"
+    widget: "number_field"
+    max: "720"
+    min: "1"
+
+  working_dir:
+    label: "Working Directory"
+    data-filepicker: true
+    data-target-file-type: dirs  # Valid values are: files, dirs, or both
+    readonly: false
+    help: "Select your project directory; defaults to $HOME"
